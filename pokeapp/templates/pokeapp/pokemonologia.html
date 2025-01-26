@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemonologia</title>
+    <link rel="stylesheet" href="{% static 'css/pokemonologia.css' %}">
+</head>
+
+<body>
+    <div class="blur"></div>
+    <header>
+        <img class="moreOptions" src="https://cdn-icons-png.flaticon.com/512/17/17654.png" alt="">
+        <div class="titulo">
+            <img src="{% static 'images/pokemon-logo.png' %}" alt="">
+            <h1>mais forte do tipo:</h1>
+            <img class="icon-pokemon" src="{% static 'icons/normal.svg' %}" alt="icon-pokemon">
+        </div>
+    </header>
+    <main>
+        <div class="more-options">
+            <h1>Escolha o tipo:</h1>
+            <img id="Bug" src="{% static 'icons/bug.svg' %}" alt="Bug" class="class-icons">
+            <img id="Dark" src="{% static 'icons/dark.svg' %}" alt="Dark" class="class-icons">
+            <img id="Dragon" src="{% static 'icons/dragon.svg' %}" alt="Dragon" class="class-icons">
+            <img id="Electric" src="{% static 'icons/electric.svg' %}" alt="Electric" class="class-icons">
+            <img id="Fairy" src="{% static 'icons/fairy.svg' %}" alt="Fairy" class="class-icons">
+            <img id="Fighting" src="{% static 'icons/fighting.svg' %}" alt="Fighting" class="class-icons">
+            <img id="Fire" src="{% static 'icons/fire.svg' %}" alt="Fire" class="class-icons">
+            <img id="Flying" src="{% static 'icons/flying.svg' %}" alt="Flying" class="class-icons">
+            <img id="Ghost" src="{% static 'icons/ghost.svg' %}" alt="Ghost" class="class-icons">
+            <img id="Grass" src="{% static 'icons/grass.svg' %}" alt="Grass" class="class-icons">
+            <img id="Ground" src="{% static 'icons/ground.svg' %}" alt="Ground" class="class-icons">
+            <img id="Ice" src="{% static 'icons/ice.svg' %}" alt="Ice" class="class-icons">
+            <img id="Normal" src="{% static 'icons/normal.svg' %}" alt="Normal" class="class-icons">
+            <img id="Poison" src="{% static 'icons/poison.svg' %}" alt="Poison" class="class-icons">
+            <img id="Psychic" src="{% static 'icons/psychic.svg' %}" alt="Psychic" class="class-icons">
+            <img id="Rock" src="{% static 'icons/rock.svg' %}" alt="Rock" class="class-icons">
+            <img id="Steel" src="{% static 'icons/steel.svg' %}" alt="Steel" class="class-icons">
+            <img style="margin-bottom: 50px;" id="Water" src="{% static 'icons/water.svg' %}" alt="Water" class="class-icons">
+        </div>
+        {% for card in cards %}
+        <div class="card">
+            <input type="text" value="{{ card.classe }}" style="display: none;" name="classe" id="classe">
+            <img class="pokemon-photo" src="{{ card.foto.url }}" alt="Dragonite">
+            <h2>{{ card.nome }}</h2>
+            <div class="status">
+                <span>HP: {{ card.hp }}</span>
+                <span>ATK: {{ card.ataque }}</span>
+                <span>DEF: {{ card.defesa }}</span>
+            </div>
+            <p class="description">
+                {{ card.descricao }}
+            </p>
+        </div>
+        {% endfor %}
+    </main>
+
+    <script src="{% static 'javascript/pokemonologia.js' %}"></script>
+</body>
+
+</html>
