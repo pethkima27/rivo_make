@@ -1,22 +1,24 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import Card
-from .forms import UserForm
+from .models import Card, Profile
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Conta criada com sucesso!')
-            return redirect('login')
-        else:
-            messages.error(request, 'Erro ao criar a conta.')
-    else:
-        form = UserForm()
+        password = request.POST['password']
+        username = request.POST['username']
+        email = request.POST['email']
 
-    return render(request, 'pokeapp/register.html', {'form': form})
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+
+        profile = Profile(user=user)
+        profile.save()
+        redirect('Pokemonologia')
+
+    return render(request, 'pokeapp/register.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -32,6 +34,7 @@ def login_view(request):
     
     return render(request, 'pokeapp/login.html')
 
+@login_required
 def pokemonologia(request):
     cards = Card.objects.all()
     return render(request, 'pokeapp/pokemonologia.html', {"cards": cards})
