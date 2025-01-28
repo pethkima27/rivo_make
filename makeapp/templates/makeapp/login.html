@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Rivo_Makes</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <img class="logo" src="{% static 'imgs/logo.png' %}" alt="Logo">
+    </header>
+    <main>
+        <form method="post">
+            <h1>Login</h1>
+            {% csrf_token %}
+            
+            <label for="id_username">Username:</label>
+            <input type="text" id="id_username" name="username" placeholder="Digite seu username:" required>
+            <br>
+        
+            <label for="id_password">Senha:</label>
+            <input type="password" id="id_password" name="password" placeholder="Digite sua senha:" required>
+            <br>
+        
+            <button type="submit">Logar-se</button>
+        
+            {% if messages %}
+                <div class="error-messages">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        
+            <p class="criarConta">Não tem uma conta? <a href="{% url 'register' %}">Crie!</a></p>
+        </form>
+    </main>
+</body>
+</html>

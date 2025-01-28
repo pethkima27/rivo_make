@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivo_Makes</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+  >
+  <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+              <a href="{% url 'menu' %}"><img class="logo" src="{% static 'imgs/logo.png' %}" alt="logo"></a>
+            </ul>
+            <ul class="navbar">
+                <li>
+                    <form method="GET" action="{% url 'menu' %}" style="display: flex; align-items: center;">
+                        <input class="search" placeholder="Pesquisar..." type="search" name="search" value="{{ query }}">
+                        <button type="submit" style="display: none;"></button>
+                    </form>
+                </li>
+                
+                <li>
+                    <a style="gap: 10px;" href="{% url 'edit_profile' %}" class="iconAccount">
+                        <img src="{{ profile.foto.url }}" alt="Foto de perfil" style="width: 50px; height: 50px; border-radius: 50%; filter: none; object-fit: cover;">
+                        Minha conta
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% if query %}
+        <h1 class="titleProducts">Buscas por: "{{ query }}"</h1>
+    {% else %}
+        <h1 class="titleProducts">Todos os Produtos</h1>
+    {% endif %}
+        <section class="products-container">
+            {% for produto in produtos %}
+            <a style="text-decoration: none;" href="{% url 'sale' produto.id %}">
+                <div class="product-card">
+                    <img style="object-fit: contain; width: 150px; height: 150px;" src="{{ produto.foto.url }}" alt="Produto" class="product-image">
+                    <h4 class="product-brand">{{ produto.titulo }}</h4>
+                    <p class="product-description">{{ produto.descricao }}</p>
+                    <p class="product-price">R$ {{ produto.preco }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </section>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const descriptions = document.querySelectorAll('.product-description');
+
+            descriptions.forEach(function(description) {
+                const text = description.textContent;
+                if (text.length > 50) {
+                    description.textContent = text.slice(0, 50) + '...';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

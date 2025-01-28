@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivo_Makes</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sale.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <a href="{% url 'menu' %}"><img class="logo" src="{% static 'imgs/logo.png' %}" alt="logo"></a>
+            </ul>
+            <ul class="navbar">
+                <li><input class="search" placeholder="Pesquisar..." type="search" name="" id=""></li>
+                <li>
+                    <a style="gap: 10px;" href="{% url 'edit_profile' %}" class="iconAccount">
+                        <img src="{{ profile.foto.url }}" alt="Foto de perfil" style="width: 50px; height: 50px; border-radius: 50%; filter: none; object-fit: cover;">
+                        Minha conta
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="photo">
+            <img style="width: 45vw; height: 45vw; object-fit: contain;" src="{{ produto.foto.url }}" alt="{{ produto.titulo }}">
+        </section>
+        <section class="description">
+            <div class="title-container">
+                <h1 class="title">{{ produto.titulo }}</h1>
+                <p style="color: #000;">Avaliações</p>
+                <hr>
+            </div>
+            <div class="descriptionDiv">
+                <div class="preco-container">
+                    <p style="color: #000;">Preço:</p>
+                    <div>
+                        <h2 style="color: #FD82B0;">R$ {{ produto.preco }}</h2>
+                    </div>
+                </div>
+                <p style="color: #797979;">{{ produto.descricao }}</p>
+                <button id="comprarBtn">COMPRAR AGORA</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <img style="width: 50px;" src="https://cdn-icons-png.flaticon.com/512/10828/10828522.png">
+            <h2>Compra Realizada com Sucesso!</h2>
+            <p>Em breve, seu produto chegará na sua casa. Agradecemos pela compra!</p>
+            <button onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("comprarBtn").onclick = function() {
+            document.getElementById("successModal").style.display = "flex";
+        };
+
+        function fecharModal() {
+            document.getElementById("successModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
