@@ -1,46 +1,48 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rivo_Makes</title>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-  >
-  <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
-  <style>
-    @media (max-width: 600px) {
-    .products-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .iconAccount{
-        margin-right: 30px;
-    }
-}
-  </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+    <style>
+        @media (max-width: 600px) {
+            .products-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .iconAccount {
+                margin-right: 30px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <nav>
             <ul>
-              <a href="{% url 'menu' %}"><img class="logo" src="{% static 'imgs/logo.png' %}" alt="logo"></a>
+                <a href="{% url 'menu' %}"><img class="logo" src="{% static 'imgs/logo.png' %}" alt="logo"></a>
             </ul>
             <ul class="navbar">
                 <li>
                     <form method="GET" action="{% url 'menu' %}" style="display: flex; align-items: center;">
-                        <input class="search" placeholder="Pesquisar..." type="search" name="search" value="{{ query }}">
+                        <input class="search" placeholder="Pesquisar..." type="search" name="search"
+                            value="{{ query }}">
                         <button type="submit" style="display: none;"></button>
                     </form>
                 </li>
-                
+
                 <li>
                     <a style="gap: 10px;" href="{% url 'edit_profile' %}" class="iconAccount">
-                        <img src="{{ profile.foto.url }}" alt="Foto de perfil" style="width: 50px; height: 50px; border-radius: 50%; filter: none; object-fit: cover;">
+                        <img src="{{ profile.foto.url }}" alt="Foto de perfil"
+                            style="width: 50px; height: 50px; border-radius: 50%; filter: none; object-fit: cover;">
                         Minha conta
                     </a>
                 </li>
@@ -50,14 +52,20 @@
     <main>
         {% if query %}
         <h1 class="titleProducts">Buscas por: "{{ query }}"</h1>
-    {% else %}
+        {% else %}
         <h1 class="titleProducts">Todos os Produtos</h1>
-    {% endif %}
+        {% endif %}
         <section class="products-container">
             {% for produto in produtos %}
             <a style="text-decoration: none;" href="{% url 'sale' produto.id %}">
                 <div class="product-card">
-                    <img style="object-fit: contain; width: 150px; height: 150px;" src="{{ produto.foto.url }}" alt="Produto" class="product-image">
+                    {% if produto.foto %}
+                    <img style="object-fit: contain; width: 150px; height: 150px;" src="{{ produto.foto.url }}"
+                        alt="Produto" class="product-image">
+                    {% else %}
+                    <img style="object-fit: contain; width: 150px; height: 150px;"
+                        src="data:image/png;base64,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" alt="Imagem não disponível" class="product-image">
+                    {% endif %}
                     <h4 class="product-brand">{{ produto.titulo }}</h4>
                     <p class="product-description">{{ produto.descricao }}</p>
                     <p class="product-price">R$ {{ produto.preco }}</p>
@@ -67,10 +75,10 @@
         </section>
     </main>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const descriptions = document.querySelectorAll('.product-description');
 
-            descriptions.forEach(function(description) {
+            descriptions.forEach(function (description) {
                 const text = description.textContent;
                 if (text.length > 50) {
                     description.textContent = text.slice(0, 50) + '...';
@@ -79,4 +87,5 @@
         });
     </script>
 </body>
+
 </html>
