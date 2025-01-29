@@ -7,6 +7,95 @@
     <title>Cadastro - Rivo_Makes</title>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: none;
+}
+header{
+    top: 0;
+    position: absolute;
+    height: 5vh;
+    width: 100vw;
+}
+.logo{
+    width: 80px;
+    margin: 20px 40px;
+    border-radius: 100%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fa6bba;
+    padding: 20px;
+}
+main{
+    padding: 10px 20px;
+    border-radius: 25px;
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
+    background-color: #fff1dd7e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    color: #fff;
+    font-size: 5vw;
+    font-family: sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+form input{
+    background-color: #ffffff8e;
+    border: none;
+    height: 7vh;
+    outline: none;
+    padding: 0px 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+a{
+    color: rgb(0, 132, 255);
+}
+.criarConta {
+    color: rgb(93, 99, 97);
+    font-size: 4vw;
+    text-align: center;
+}
+button{
+    font-size: 1.6rem;
+    color: #fff;
+    border: none;
+    height: 7vh;
+    background-color: #b521e28e; 
+}
+@media (min-width: 600px) {
+    .logo {
+        display: none !important;
+    }
+    main {
+        width: 40vw;
+        height: 80vh;
+    }
+    form {
+        font-size: 2.3vw;
+    }
+    .criarConta {
+        font-size: 1.3vw;
+    }
+}
+</style>    
 </head>
 <body>
     <header>

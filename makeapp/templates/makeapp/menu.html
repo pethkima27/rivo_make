@@ -11,6 +11,18 @@
     href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
   >
   <link rel="shortcut icon" href="{% static 'imgs/logo.png' %}" type="image/x-icon">
+  <style>
+    @media (max-width: 600px) {
+    .products-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .iconAccount{
+        margin-right: 30px;
+    }
+}
+  </style>
 </head>
 <body>
     <header>

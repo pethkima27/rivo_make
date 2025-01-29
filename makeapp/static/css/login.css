@@ -11,8 +11,8 @@ header{
     width: 100vw;
 }
 .logo{
-    width: 100px;
-    margin: 50px 80px;
+    width: 80px;
+    margin: 20px 40px;
     border-radius: 100%;
 }
 body{
@@ -23,12 +23,14 @@ body{
     width: 100vw;
     height: 100vh;
     background-color: #fa6bba;
+    padding: 20px;
 }
 main{
     padding: 10px 20px;
     border-radius: 25px;
-    width: 40vw;
-    height: 80vh;
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
     background-color: #fff1dd7e;
     display: flex;
     justify-content: center;
@@ -36,13 +38,13 @@ main{
 }
 form{
     color: #fff;
-    font-size: 2.3vw;
+    font-size: 5vw;
     font-family: sans-serif;
-    width: 30vw;
-    height: 80vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
 }
 form input{
     background-color: #ffffff8e;
@@ -51,14 +53,15 @@ form input{
     outline: none;
     padding: 0px 10px;
     border-radius: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 a{
     color: rgb(0, 132, 255);
 }
 .criarConta {
     color: rgb(93, 99, 97);
-    font-size: 1.3vw;
+    font-size: 4vw;
+    text-align: center;
 }
 button{
     font-size: 1.6rem;
@@ -66,4 +69,19 @@ button{
     border: none;
     height: 7vh;
     background-color: #b521e28e; 
+}
+@media (min-width: 600px) {
+    .logo {
+        display: none;
+    }
+    main {
+        width: 40vw;
+        height: 80vh;
+    }
+    form {
+        font-size: 2.3vw;
+    }
+    .criarConta {
+        font-size: 1.3vw;
+    }
 }
